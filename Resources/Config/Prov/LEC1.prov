@@ -1,0 +1,222 @@
+{
+  "Name": "LEC1",
+  "Blocs": [
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/LEC1/LEC1_SEM.jpg",
+      "Name": "SEMANTIC",
+      "Order": 0,
+      "Sort": "Main_RESPONSE_LATENCY;Main_SEMANTIC_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3500
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "SEMANTIC",
+              "Codes": [
+                10
+              ],
+              "Type": 0,
+              "ID": "8d209785-0a94-414d-b567-643e7cbcb20d"
+            },
+            {
+              "Name": "RESPONSE",
+              "Codes": [
+                1,
+                2
+              ],
+              "Type": 1,
+              "ID": "cbb7a3e5-9f0f-495e-810c-ebccbe2c8a8b"
+            }
+          ],
+          "Icons": [
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_PRE",
+              "Window": {
+                "Start": -500,
+                "End": 0
+              },
+              "ID": "b181293e-8b78-46e2-a8c1-6e23ef74b9b7"
+            },
+            {
+              "ImagePath": "./Resources/Config/Pictures/LEC1/LEC1_SEM.jpg",
+              "Name": "PIC",
+              "Window": {
+                "Start": 0,
+                "End": 2000
+              },
+              "ID": "7b5aeddb-e6a7-43a0-a2e2-d19110d27601"
+            },
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_POST",
+              "Window": {
+                "Start": 2000,
+                "End": 3500
+              },
+              "ID": "a8cfd8c8-7f9f-4973-a6b4-bc060009b611"
+            }
+          ],
+          "Treatments": [],
+          "ID": "9ce7fbb8-931d-4023-ba32-c05078bf4d95"
+        }
+      ],
+      "ID": "48ed4ac4-3cb7-4ff0-adec-e96ebb3859b5"
+    },
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/LEC1/LEC1_PHO.jpg",
+      "Name": "PHONETIC",
+      "Order": 1,
+      "Sort": "Main_RESPONSE_LATENCY;Main_PHONETIC_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3500
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "PHONETIC",
+              "Codes": [
+                20
+              ],
+              "Type": 0,
+              "ID": "81542af6-caf8-45c7-9d6b-a960286c9fda"
+            },
+            {
+              "Name": "RESPONSE",
+              "Codes": [
+                1,
+                2
+              ],
+              "Type": 1,
+              "ID": "6b4b023b-8d2a-4221-9fed-36ae711a4bb2"
+            }
+          ],
+          "Icons": [
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_PRE",
+              "Window": {
+                "Start": -500,
+                "End": 0
+              },
+              "ID": "37957224-434b-479d-ac9c-9f72a62f15fd"
+            },
+            {
+              "ImagePath": "./Resources/Config/Pictures/LEC1/LEC1_PHO.jpg",
+              "Name": "PIC",
+              "Window": {
+                "Start": 0,
+                "End": 2000
+              },
+              "ID": "482e5715-e9bf-4ef7-813c-41275e47897a"
+            },
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_POST",
+              "Window": {
+                "Start": 2000,
+                "End": 3500
+              },
+              "ID": "cf43854f-00ca-4ccb-89ef-23590b338507"
+            }
+          ],
+          "Treatments": [],
+          "ID": "31a38d0d-5dbc-4c49-b1f3-1a147d87674d"
+        }
+      ],
+      "ID": "f9a5f9d9-eed6-4512-8165-eec89aefa616"
+    },
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/LEC1/LEC1_CONS.jpg",
+      "Name": "VISUAL",
+      "Order": 2,
+      "Sort": "Main_RESPONSE_LATENCY;Main_VISUAL_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3500
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "VISUAL",
+              "Codes": [
+                30
+              ],
+              "Type": 0,
+              "ID": "50e36ee4-ab64-41c6-994a-2573838aebc6"
+            },
+            {
+              "Name": "RESPONSE",
+              "Codes": [
+                1,
+                2
+              ],
+              "Type": 1,
+              "ID": "3fffab0d-6705-475c-886a-831c481e88eb"
+            }
+          ],
+          "Icons": [
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_PRE",
+              "Window": {
+                "Start": -500,
+                "End": 0
+              },
+              "ID": "3ef149c7-ffe5-4f89-9a5b-28d29f95e5c4"
+            },
+            {
+              "ImagePath": "./Resources/Config/Pictures/LEC1/LEC1_CONS.jpg",
+              "Name": "PIC",
+              "Window": {
+                "Start": 0,
+                "End": 2000
+              },
+              "ID": "f26d532a-d6ff-4623-bc3d-1da42a427153"
+            },
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_POST",
+              "Window": {
+                "Start": 2000,
+                "End": 3500
+              },
+              "ID": "473c612b-ceea-4734-b466-a285eac78392"
+            }
+          ],
+          "Treatments": [],
+          "ID": "abc1bab9-5733-48bd-bac7-86a8bc6ed956"
+        }
+      ],
+      "ID": "00d64693-75b4-424f-bc48-b9ecbd69724f"
+    }
+  ],
+  "ID": "xxxxxxxxxxxxxxxxxxxxxxxxx"
+}

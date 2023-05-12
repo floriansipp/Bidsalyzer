@@ -1,0 +1,150 @@
+{
+  "Name": "MCSE",
+  "Blocs": [
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/MCSE/MCSE_EASY.jpg",
+      "Name": "POP-OUT",
+      "Order": 0,
+      "Sort": "Main_RESPONSE_LATENCY;Main_POP-OUT_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3500
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "POP-OUT",
+              "Codes": [
+                10
+              ],
+              "Type": 0,
+              "ID": "90f5d6ce-50fb-48bd-815d-8804d6ae8e35"
+            },
+            {
+              "Name": "RESPONSE",
+              "Codes": [
+                100,
+                200
+              ],
+              "Type": 1,
+              "ID": "01f28d30-56c9-48a4-90ed-cb8fdbed759c"
+            }
+          ],
+          "Icons": [
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_PRE",
+              "Window": {
+                "Start": -500,
+                "End": 0
+              },
+              "ID": "fd35800f-2f2c-4abe-ba6e-2e486a79eac7"
+            },
+            {
+              "ImagePath": "./Resources/Config/Pictures/MCSE/MCSE_EASY.jpg",
+              "Name": "PIC",
+              "Window": {
+                "Start": 0,
+                "End": 2500
+              },
+              "ID": "45888698-95fb-4eaf-af4e-fdd401429efd"
+            },
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_POST",
+              "Window": {
+                "Start": 2500,
+                "End": 3500
+              },
+              "ID": "e3a864b6-cef4-4304-a5a6-1ade82d69f81"
+            }
+          ],
+          "Treatments": [],
+          "ID": "f1c55591-fb14-4bca-90fb-35400990f306"
+        }
+      ],
+      "ID": "ef133481-aea8-4089-8e59-47e9689c12ed"
+    },
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/MCSE/MCSE_HARD.jpg",
+      "Name": "RESEARCH",
+      "Order": 1,
+      "Sort": "Main_RESPONSE_LATENCY;Main_RESEARCH_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3500
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "RESEARCH",
+              "Codes": [
+                60
+              ],
+              "Type": 0,
+              "ID": "7f65d7ed-1a7b-4b9d-9173-df0e07e25258"
+            },
+            {
+              "Name": "RESPONSE",
+              "Codes": [
+                100,
+                200
+              ],
+              "Type": 1,
+              "ID": "794653d2-44a9-47de-9b34-40390a359bb9"
+            }
+          ],
+          "Icons": [
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_PRE",
+              "Window": {
+                "Start": -500,
+                "End": 0
+              },
+              "ID": "3eaa6a6b-70ac-4e32-bbe5-928427001ff1"
+            },
+            {
+              "ImagePath": "./Resources/Config/Pictures/MCSE/MCSE_HARD.jpg",
+              "Name": "PIC",
+              "Window": {
+                "Start": 0,
+                "End": 2500
+              },
+              "ID": "a2e663f9-f3b6-4990-8e81-978fc0c9b7d4"
+            },
+            {
+              "ImagePath": "D:\\HBP\\HiBoP_BDD_Manager_Builds\\resources\\Images localizers\\VISU_CROSS.jpg",
+              "Name": "FIX_POST",
+              "Window": {
+                "Start": 2500,
+                "End": 3500
+              },
+              "ID": "622ecd15-fbc9-42f2-9054-6e3f1e3c2ad7"
+            }
+          ],
+          "Treatments": [],
+          "ID": "ab04d876-e0c9-4e60-866d-05d4363642b1"
+        }
+      ],
+      "ID": "32524237-3b5c-4870-be39-cfbe0d141070"
+    }
+  ],
+  "ID": "4732820b-67e0-46e9-9078-dcbf493401cc"
+}
