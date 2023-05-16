@@ -1,4 +1,5 @@
 #include "eegContainer.h"
+#include "QtCore/qdebug.h"
 
 InsermLibrary::eegContainer::eegContainer(EEGFormat::IFile* file, int downsampFrequency)
 {
@@ -84,37 +85,36 @@ void InsermLibrary::eegContainer::BipolarizeElectrodes()
 
 void InsermLibrary::eegContainer::SaveFrequencyData(EEGFormat::FileType FileType, const std::vector<int>& frequencyBand)
 {
-	std::string rootFileFolder = EEGFormat::Utility::GetDirectoryPath(m_file->DefaultFilePath());
+    std::filesystem::path root(m_file->DefaultFilePath());
+    qDebug() << root.parent_path().parent_path().parent_path().parent_path().c_str();
+    std::string rootFileFolder = root.parent_path().parent_path().parent_path().parent_path().string() + "/derivatives";
+    //std::string rootFileFolder = EEGFormat::Utility::GetDirectoryPath(m_file->DefaultFilePath());
+    qDebug() << rootFileFolder.c_str();
 	std::string patientName = EEGFormat::Utility::GetFileName(m_file->DefaultFilePath(), false);
-    std::string frequencyFolder = "_f" + std::to_string(frequencyBand[0]) + "f" + std::to_string(frequencyBand[frequencyBand.size() - 1]);
-	std::string rootFrequencyFolder = rootFileFolder + "/" + patientName + frequencyFolder + "/";
+    vec1<std::string> patientNameSplit = split<std::string>(patientName, "_");
+    patientName = patientNameSplit[0];
+    qDebug() << patientName.c_str();
+    std::string frequencyFolder = "f" + std::to_string(frequencyBand[0]) + "f" + std::to_string(frequencyBand[frequencyBand.size() - 1]);
+    qDebug() << frequencyFolder.c_str();
+    std::string rootFrequencyFolder = rootFileFolder + "/" + patientName + "/ieeg/" + frequencyFolder + "/";
+    qDebug() << rootFrequencyFolder.c_str();
 
     //TODO : When eeg format does not need boost::filesystem anymore
     //replace functions with those from std::filesystem
     if(!EEGFormat::Utility::IsValidDirectory(rootFrequencyFolder.c_str()))
     {
-        std::cout << "Creating freQ FOLDER" << std::endl;
+        std::cout << "Creating freQ FOLDER" << rootFrequencyFolder << std::endl;
 		CREATE_DIRECTORY(rootFrequencyFolder.c_str());
     }
 
-	for (int i = 0; i < 6; i++)
+    //for bids issues
+    patientName = patientNameSplit[0] + "_" + patientNameSplit[2];
+    for (int i = 0; i < 6; i++)
 	{
 		std::string directory = rootFrequencyFolder;
-        std::string baseFileName = patientName + frequencyFolder + "_ds" + std::to_string(DownsamplingFactor()) + "_sm" + std::to_string((int)m_smoothingMilliSec[i]);
+        std::string baseFileName = patientName + "_acq-" + frequencyFolder + "ds" + std::to_string(DownsamplingFactor()) + "sm" + std::to_string((int)m_smoothingMilliSec[i]) + "_ieeg";
 		switch (FileType)
 		{
-			case EEGFormat::FileType::Micromed:
-			{
-				throw std::runtime_error("Micromed File type is not allowed as an output file");
-				break;
-			}
-			case EEGFormat::FileType::Elan:
-			{
-				EEGFormat::ElanFile* elanFile = new EEGFormat::ElanFile(*elanFrequencyBand[i]);
-				elanFile->SaveAs(rootFrequencyFolder + baseFileName + ".eeg.ent", rootFrequencyFolder + baseFileName + ".eeg", "", "");
-				EEGFormat::Utility::DeleteAndNullify(elanFile);
-				break;
-			}
 			case EEGFormat::FileType::BrainVision:
 			{
 				std::string header = rootFrequencyFolder + baseFileName + ".vhdr";

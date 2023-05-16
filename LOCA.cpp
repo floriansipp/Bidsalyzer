@@ -81,10 +81,11 @@ void InsermLibrary::LOCA::Eeg2erp(eegContainer* myeegContainer, ProvFile* myprov
 	delete[] windowSam;
 }
 
-void InsermLibrary::LOCA::Localize(eegContainer* myeegContainer, int idCurrentLoca, ExperimentFolder* currentLoca)
+void InsermLibrary::LOCA::Localize(eegContainer* myeegContainer, int idCurrentLoca,  InsermLibrary::IEegFileInfo* currentLoca, std::string taskName)
 {
 	m_idCurrentLoca = idCurrentLoca;
-	m_currentLoca = currentLoca;
+    //m_currentLoca = currentLoca;
+    m_currentLocaName = taskName;
 
 	int examCountToProcess = static_cast<int>(m_analysisOpt.size());
 	for (int i = 0; i < examCountToProcess; i++)
@@ -104,38 +105,38 @@ void InsermLibrary::LOCA::Localize(eegContainer* myeegContainer, int idCurrentLo
 		}
 		else
 		{
-            //TODO : in the case of brainvision or other fileformat searching with SM0_ELAN will cause issues, need to correct that
-            int frequencyCount = static_cast<int>(currentLoca->FrequencyFolders().size());
-			for (int j = 0; j < frequencyCount; j++)
-			{
-				std::string fMin = std::to_string(currentFrequencyBand.FMin());
-				std::string fMax = std::to_string(currentFrequencyBand.FMax());
-                IEegFileInfo *sm0fileInfo = currentLoca->FrequencyFolders()[j].GetEegFileInfo(SmoothingWindow::SM0, InsermLibrary::FileType::Elan);
-                if( sm0fileInfo != nullptr)
-                {
-                    if ((currentLoca->FrequencyFolders()[j].FrequencyBandLabel() == "f" + fMin + "f" + fMax) && sm0fileInfo->CheckForErrors() == 0)
-                    {
-                        int loadedCount = 0;
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM0, 0, InsermLibrary::FileType::Elan);
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM250, 1, InsermLibrary::FileType::Elan);
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM500, 2, InsermLibrary::FileType::Elan);
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM1000, 3, InsermLibrary::FileType::Elan);
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM2500, 4, InsermLibrary::FileType::Elan);
-                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM5000, 5, InsermLibrary::FileType::Elan);
+//            //TODO : in the case of brainvision or other fileformat searching with SM0_ELAN will cause issues, need to correct that
+//            int frequencyCount = static_cast<int>(currentLoca->FrequencyFolders().size());
+//			for (int j = 0; j < frequencyCount; j++)
+//			{
+//				std::string fMin = std::to_string(currentFrequencyBand.FMin());
+//				std::string fMax = std::to_string(currentFrequencyBand.FMax());
+//                IEegFileInfo *sm0fileInfo = currentLoca->FrequencyFolders()[j].GetEegFileInfo(SmoothingWindow::SM0, InsermLibrary::FileType::Elan);
+//                if( sm0fileInfo != nullptr)
+//                {
+//                    if ((currentLoca->FrequencyFolders()[j].FrequencyBandLabel() == "f" + fMin + "f" + fMax) && sm0fileInfo->CheckForErrors() == 0)
+//                    {
+//                        int loadedCount = 0;
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM0, 0, InsermLibrary::FileType::Elan);
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM250, 1, InsermLibrary::FileType::Elan);
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM500, 2, InsermLibrary::FileType::Elan);
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM1000, 3, InsermLibrary::FileType::Elan);
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM2500, 4, InsermLibrary::FileType::Elan);
+//                        loadedCount += LoadProcessedData(myeegContainer, currentLoca->FrequencyFolders()[j], SmoothingWindow::SM5000, 5, InsermLibrary::FileType::Elan);
 
-                        if (loadedCount > 0)
-                        {
-                            emit incrementAdavnce(1);
-                            std::string freqFolder = CreateFrequencyFolder(myeegContainer, currentFrequencyBand);
-                            GenerateMapsAndFigures(myeegContainer, freqFolder, m_analysisOpt[i]);
-                        }
-                        else
-                        {
-                            emit sendLogInfo("Problem loading files for this frequency, aborting");
-                        }
-                    }
-                }
-			}
+//                        if (loadedCount > 0)
+//                        {
+//                            emit incrementAdavnce(1);
+//                            std::string freqFolder = CreateFrequencyFolder(myeegContainer, currentFrequencyBand);
+//                            GenerateMapsAndFigures(myeegContainer, freqFolder, m_analysisOpt[i]);
+//                        }
+//                        else
+//                        {
+//                            emit sendLogInfo("Problem loading files for this frequency, aborting");
+//                        }
+//                    }
+//                }
+//			}
 		}
 	}
 }
@@ -166,30 +167,30 @@ void InsermLibrary::LOCA::LocalizeMapsOnly(eegContainer* myeegContainer, int idC
 	deleteAndNullify1D(m_triggerContainer);
 }
 
-int InsermLibrary::LOCA::LoadProcessedData(eegContainer* myeegContainer, FrequencyFolder folder, SmoothingWindow smoothingWindow, int index, InsermLibrary::FileType fileType)
-{
-    InsermLibrary::IEegFileInfo* ifileInfo = folder.GetEegFileInfo(smoothingWindow, fileType);
-    if(ifileInfo->CheckForErrors() == 0)
-    {
-        std::vector<std::string> dataFiles = ifileInfo->GetFiles();
-        int result = myeegContainer->LoadFrequencyData(dataFiles, index);
-        if (result == 0)
-        {
-            emit sendLogInfo("Envelloppe File Loaded at place number " + QString::number(index));
-            return 1;
-        }
-        else
-        {
-            emit sendLogInfo("Problem loading file at place number " + QString::number(index));
-            return 0;
-        }
-    }
-    else
-    {
-        emit sendLogInfo("The data for this smoothing window / Filetype seems to have a problem");
-        return 0;
-    }
-}
+//int InsermLibrary::LOCA::LoadProcessedData(eegContainer* myeegContainer, FrequencyFolder folder, SmoothingWindow smoothingWindow, int index, InsermLibrary::FileType fileType)
+//{
+//    InsermLibrary::IEegFileInfo* ifileInfo = folder.GetEegFileInfo(smoothingWindow, fileType);
+//    if(ifileInfo->CheckForErrors() == 0)
+//    {
+//        std::vector<std::string> dataFiles = ifileInfo->GetFiles();
+//        int result = myeegContainer->LoadFrequencyData(dataFiles, index);
+//        if (result == 0)
+//        {
+//            emit sendLogInfo("Envelloppe File Loaded at place number " + QString::number(index));
+//            return 1;
+//        }
+//        else
+//        {
+//            emit sendLogInfo("Problem loading file at place number " + QString::number(index));
+//            return 0;
+//        }
+//    }
+//    else
+//    {
+//        emit sendLogInfo("The data for this smoothing window / Filetype seems to have a problem");
+//        return 0;
+//    }
+//}
 
 void InsermLibrary::LOCA::GenerateMapsAndFigures(eegContainer* myeegContainer, std::string freqFolder, FrequencyBandAnalysisOpt a)
 {
@@ -199,16 +200,15 @@ void InsermLibrary::LOCA::GenerateMapsAndFigures(eegContainer* myeegContainer, s
 
     //We generate file.pos and file_dsX.pos if we find a prov file
     //with the exact same name as the experiment.
-    ProvFile* task = LoadProvForTask(m_currentLoca->ExperimentLabel());
-    ProvFile* taskInverted = LoadProvForTask(m_currentLoca->ExperimentLabel(), "INVERTED");
-    ProvFile* taskBarPlot = LoadProvForTask(m_currentLoca->ExperimentLabel(), "BARPLOT");
-    ProvFile* taskStatistics = LoadProvForTask(m_currentLoca->ExperimentLabel(), "STATISTICS");
-    ProvFile* taskMaintenanceStatistics = LoadProvForTask(m_currentLoca->ExperimentLabel(), "MAINTENANCE_STATISTICS");
+    ProvFile* task = LoadProvForTask(m_currentLocaName);
+    ProvFile* taskInverted = LoadProvForTask(m_currentLocaName, "INVERTED");
+    ProvFile* taskBarPlot = LoadProvForTask(m_currentLocaName, "BARPLOT");
+    ProvFile* taskStatistics = LoadProvForTask(m_currentLocaName, "STATISTICS");
+    ProvFile* taskMaintenanceStatistics = LoadProvForTask(m_currentLocaName, "MAINTENANCE_STATISTICS");
 
     if (task != nullptr)
     {
         CreateEventsFile(a, myeegContainer, m_triggerContainer, task);
-        CreateConfFile(myeegContainer);
     }
 
     //Process Env2Plot => LOCA
@@ -331,55 +331,48 @@ void InsermLibrary::LOCA::GenerateMapsAndFigures(eegContainer* myeegContainer, s
 
 void InsermLibrary::LOCA::CreateEventsFile(FrequencyBandAnalysisOpt analysisOpt, eegContainer* myeegContainer, TriggerContainer* triggerContainer, ProvFile* myprovFile)
 {
-	std::string fileNameBase = myeegContainer->RootFileFolder() + myeegContainer->RootFileName();
+    qDebug() << myeegContainer->RootOutputFileFolder().c_str();
+    qDebug() << myeegContainer->RootFileName().c_str();
+
+    vec1<std::string> patientNameSplit = split<std::string>(myeegContainer->RootFileName(), "_");
+    std::string sub = patientNameSplit[0];
+    std::string task = patientNameSplit[2];
+    std::string fileNameBase =  myeegContainer->RootOutputFileFolder() + sub + "_" + task;
+    std::string frequencySuffix = "f" + std::to_string(analysisOpt.Band.FMin()) + "f" + std::to_string(analysisOpt.Band.FMax());
+    std::string labelName = sub + "_" + task + "_acq-" + frequencySuffix + "ds" +   std::to_string(myeegContainer->DownsamplingFactor());
+
+    qDebug() << fileNameBase.c_str();
+    qDebug() << frequencySuffix.c_str();
+    qDebug() << labelName.c_str();
 
 	EEGFormat::FileType outputType = analysisOpt.analysisParameters.outputType;
 	switch (outputType)
 	{
-	case EEGFormat::FileType::Micromed:
-	{
-		throw std::runtime_error("Micromed File type is not allowed as an event output file");
-		break;
-	}
-	case EEGFormat::FileType::Elan:
-	{
-		std::string eventFilePath = fileNameBase + ".pos";
-        std::string rawEventsDownsampledFilePath = fileNameBase + "_raw_ds" + std::to_string(myeegContainer->DownsamplingFactor()) + ".pos";
-		std::string downsampledEventsFilePath = fileNameBase + "_ds" + std::to_string(myeegContainer->DownsamplingFactor()) + ".pos";
-        std::vector<Trigger> triggers = triggerContainer->GetTriggerForExperiment(myprovFile, 99);
-        std::vector<Trigger> triggersRawDs = triggerContainer->GetTriggerForExperiment(nullptr, -1, myeegContainer->DownsamplingFactor());
-		std::vector<Trigger> triggersDownsampled = triggerContainer->GetTriggerForExperiment(myprovFile, 99, myeegContainer->DownsamplingFactor());
-		CreateFile(outputType, eventFilePath, triggers);
-        CreateFile(outputType, rawEventsDownsampledFilePath, triggersRawDs);
-		CreateFile(outputType, downsampledEventsFilePath, triggersDownsampled);
-		break;
-	}
-	case EEGFormat::FileType::BrainVision:
-	{
-		std::string eventFilePath = fileNameBase + ".vmrk";
-		std::string downsampledEventsFilePath = fileNameBase + "_ds" + std::to_string(myeegContainer->DownsamplingFactor()) + ".vmrk";
-		std::vector<Trigger> triggers = triggerContainer->GetTriggerForExperiment(myprovFile, 99);
-		std::vector<Trigger> triggersDownsampled = triggerContainer->GetTriggerForExperiment(myprovFile, 99, myeegContainer->DownsamplingFactor());
+        case EEGFormat::FileType::BrainVision:
+        {
+            std::string eventFilePath = fileNameBase + ".vmrk";
+            std::string downsampledEventsFilePath = myeegContainer->RootOutputFileFolder() + labelName + "_ieeg.vmrk";
+            std::vector<Trigger> triggers = triggerContainer->GetTriggerForExperiment(myprovFile, 99);
+            std::vector<Trigger> triggersDownsampled = triggerContainer->GetTriggerForExperiment(myprovFile, 99, myeegContainer->DownsamplingFactor());
 
-		//We do not add the datafile indication for the ds.vmrk because we chose not to duplicate said file for each fXX_fYY_dsZ eeg file
-		//and thus we can not make it point toward each of the analysis data file.
-		std::string eventDataFilePath = myeegContainer->RootFileName() + ".eeg";
-		CreateFile(outputType, eventFilePath, triggers, eventDataFilePath);
-		CreateFile(outputType, downsampledEventsFilePath, triggersDownsampled, "");
+            //We do not add the datafile indication for the ds.vmrk because we chose not to duplicate said file for each fXX_fYY_dsZ eeg file
+            //and thus we can not make it point toward each of the analysis data file.
+            //std::string eventDataFilePath = myeegContainer->RootOutputFileFolder() + "/" + myeegContainer->RootFileName() + ".eeg";
+            //CreateFile(outputType, eventFilePath, triggers, eventDataFilePath);
+            CreateFile(outputType, downsampledEventsFilePath, triggersDownsampled, "");
 
-		std::string frequencySuffix = "f" + std::to_string(analysisOpt.Band.FMin()) + "f" + std::to_string(analysisOpt.Band.FMax());
-		RelinkAnalysisFileAnUglyWay(myeegContainer->RootFileFolder(), myeegContainer->RootFileName(), frequencySuffix, std::to_string(myeegContainer->DownsamplingFactor()));
-		break;
-	}
-	case EEGFormat::FileType::EuropeanDataFormat:
-	{
-		throw std::runtime_error("European Data Format file type is not allowed as an output file");
-		break;
-	}
-	default:
-	{
-		throw std::runtime_error("Output file type not recognized");
-		break;
+            RelinkAnalysisFileAnUglyWay(myeegContainer->RootOutputFileFolder(), labelName, frequencySuffix, std::to_string(myeegContainer->DownsamplingFactor()));
+            break;
+        }
+        case EEGFormat::FileType::EuropeanDataFormat:
+        {
+            throw std::runtime_error("European Data Format file type is not allowed as an output file");
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Output file type not recognized");
+            break;
 	}
 	}
 }
@@ -429,13 +422,14 @@ void InsermLibrary::LOCA::RelinkAnalysisFileAnUglyWay(const std::string& rootPat
 {
 	std::string frequencyFolder = fileNameBase + "_" + frequencySuffix;
 
-	std::vector<std::string> pathToCheck;
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm0.vhdr");
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm250.vhdr");
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm500.vhdr");
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm1000.vhdr");
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm2500.vhdr");
-	pathToCheck.push_back(rootPath + frequencyFolder + "/" + frequencyFolder + "_ds" + downsamplingFactor + "_sm5000.vhdr");
+    qDebug() << fileNameBase.c_str();
+    std::vector<std::string> pathToCheck;
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm0_ieeg.vhdr");
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm250_ieeg.vhdr");
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm500_ieeg.vhdr");
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm1000_ieeg.vhdr");
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm2500_ieeg.vhdr");
+    pathToCheck.push_back(rootPath + frequencySuffix + "/" + fileNameBase + "sm5000_ieeg.vhdr");
 
 	int PathCount = pathToCheck.size();
 	for (int i = 0; i < PathCount; i++)
@@ -455,7 +449,7 @@ void InsermLibrary::LOCA::RelinkAnalysisFileAnUglyWay(const std::string& rootPat
 			if (it != rawHeader.end())
 			{
 				int id = std::distance(rawHeader.begin(), it);
-				rawHeader[id] = "MarkerFile=../" + fileNameBase + "_ds" + downsamplingFactor + ".vmkr";
+                rawHeader[id] = "MarkerFile=../" + fileNameBase + "_ieeg.vmrk";
 
 				std::ofstream markersFile(pathToCheck[i], std::ios::trunc | std::ios::binary);
 				if (markersFile.is_open())
@@ -523,9 +517,15 @@ void InsermLibrary::LOCA::CreateConfFile(eegContainer* myeegContainer)
 */
 std::string InsermLibrary::LOCA::CreateFrequencyFolder(eegContainer* myeegContainer, FrequencyBand currentFreq)
 {
+    std::filesystem::path root(myeegContainer->RootFileFolder());
+    std::string rootFileFolder = root.parent_path().parent_path().parent_path().parent_path().string() + "/derivatives";
+    std::string patientName = myeegContainer->RootFileName();
+    vec1<std::string> patientNameSplit = split<std::string>(patientName, "_");
+    patientName = patientNameSplit[0];
+
 	std::string fMin = std::to_string(currentFreq.FMin());
 	std::string fMax = std::to_string(currentFreq.FMax());
-	std::string freqFolder = myeegContainer->RootFileFolder() + myeegContainer->RootFileName() + "_f" + fMin + "f" + fMax + "/";
+    std::string freqFolder = rootFileFolder + "/" + patientName + "/ieeg/" + "f" + fMin + "f" + fMax + "/";
 
 	if (!QDir(&freqFolder.c_str()[0]).exists())
 	{

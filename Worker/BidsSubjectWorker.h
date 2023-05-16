@@ -20,7 +20,7 @@ public:
     void ExtractElectrodeList();
 
 private:
-    InsermLibrary::eegContainer* ExtractData(ExperimentFolder currentLoca, bool extractOriginalData);
+    InsermLibrary::eegContainer* ExtractData(InsermLibrary::IEegFileInfo* ifileInfo, bool extractOriginalData);
 
 private:
     BidsSubject* m_Patient = nullptr;

@@ -16,6 +16,9 @@
 #include <thread>
 #include <mutex> 
 
+#include <qDebug>
+#include <filesystem>
+
 namespace InsermLibrary
 {
 	class eegContainer
@@ -29,6 +32,15 @@ namespace InsermLibrary
 		{
 			return EEGFormat::Utility::GetDirectoryPath(m_file->DefaultFilePath());
 		}
+        inline std::string RootOutputFileFolder()
+        {
+            std::filesystem::path root(m_file->DefaultFilePath());
+            std::string rootFileFolder = root.parent_path().parent_path().parent_path().parent_path().string() + "/derivatives";
+            std::string patientName = EEGFormat::Utility::GetFileName(m_file->DefaultFilePath(), false);
+            vec1<std::string> patientNameSplit = split<std::string>(patientName, "_");
+            patientName = patientNameSplit[0];
+            return rootFileFolder + "/" + patientName + "/ieeg/";
+        }
 		inline std::string RootFileName(bool withExtension = false)
 		{
 			return EEGFormat::Utility::GetFileName(m_file->DefaultFilePath(), withExtension);

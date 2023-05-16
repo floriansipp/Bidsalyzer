@@ -43,7 +43,7 @@ namespace InsermLibrary
 		LOCA(std::vector<FrequencyBandAnalysisOpt>& analysisOpt, statOption* statOption, picOption* picOptionn, std::string ptsFilePath = "");
 		~LOCA();
         void Eeg2erp(eegContainer *myeegContainer, ProvFile* myprovFile);
-        void Localize(eegContainer *myeegContainer, int idCurrentLoca, ExperimentFolder *currentLoca);
+        void Localize(eegContainer *myeegContainer, int idCurrentLoca, InsermLibrary::IEegFileInfo *currentLoca, std::string taskName);
         void LocalizeMapsOnly(eegContainer *myeegContainer, int idCurrentLoca);
 
 	private:
@@ -64,7 +64,8 @@ namespace InsermLibrary
 
 	private:
         ExperimentFolder *m_currentLoca = nullptr; //Only contains a link to filesystem information about current localizer, do not delete in destructor
-		int m_idCurrentLoca = -1;
+        std::string m_currentLocaName = "";
+        int m_idCurrentLoca = -1;
 		TriggerContainer *m_triggerContainer = nullptr;
 		std::vector<FrequencyBandAnalysisOpt> m_analysisOpt;
 		statOption* m_statOption;

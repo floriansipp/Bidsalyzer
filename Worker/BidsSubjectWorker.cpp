@@ -16,32 +16,30 @@ BidsSubjectWorker::~BidsSubjectWorker()
 
 void BidsSubjectWorker::Process()
 {
-//    InsermLibrary::eegContainer *myContainer = nullptr;
-//    int localizerCount = static_cast<int>(m_Patient->ExperimentFolders().size());
-//    for (int i = 0; i < localizerCount; i++)
-//	{
-//        emit sendLogInfo(QString::fromStdString("=== PROCESSING : " + m_Patient->ExperimentFolders()[i].Path() + " ==="));
-//        bool extractData = m_FrequencyBands.size() > 0 ? m_FrequencyBands[0].analysisParameters.eeg2env2 : false; //for now it's the same analysus choice for each band , might change in the future
-//        myContainer = ExtractData(m_Patient->ExperimentFolders()[i], extractData);
+    InsermLibrary::eegContainer *myContainer = nullptr;
+    int localizerCount = static_cast<int>(m_Patient->Tasks().size());
+    for (int i = 0; i < localizerCount; i++)
+    {
+        emit sendLogInfo(QString::fromStdString("=== PROCESSING : " + m_Patient->Tasks()[i] + " ==="));
+        bool extractData = m_FrequencyBands.size() > 0 ? m_FrequencyBands[0].analysisParameters.eeg2env2 : false; //for now it's the same analysus choice for each band , might change in the future
+        myContainer = ExtractData(m_Patient->FileInfo(i), extractData);
 
-//		if (myContainer != nullptr)
-//		{
-//            emit sendLogInfo("Number of Bipole for analysis : " + QString::number(myContainer->BipoleCount()));
+        if (myContainer != nullptr)
+        {
+            emit sendLogInfo("Number of Bipole for analysis : " + QString::number(myContainer->BipoleCount()));
 
-//            emit sendLogInfo("");
-//            emit sendLogInfo(QString::fromStdString("Begin time : ") + GetCurrentTime().c_str());
-//            emit sendLogInfo("");
-//            m_Loca->Localize(myContainer, i, &m_Patient->ExperimentFolders()[i]);
-//            emit sendLogInfo("");
-//            emit sendLogInfo(QString::fromStdString("End time : ") + GetCurrentTime().c_str());
-//            emit sendLogInfo("");
+            emit sendLogInfo("");
+            emit sendLogInfo(QString::fromStdString("Begin time : ") + GetCurrentTime().c_str());
+            emit sendLogInfo("");
+            m_Loca->Localize(myContainer, i, m_Patient->FileInfo(i), m_Patient->Tasks()[i]);
+            emit sendLogInfo("");
+            emit sendLogInfo(QString::fromStdString("End time : ") + GetCurrentTime().c_str());
+            emit sendLogInfo("");
 
-//            emit sendLogInfo("End of processing for experiment " + QString::number(i+1) + " out of " + QString::number(localizerCount) + "\n");
-//			deleteAndNullify1D(myContainer);
-//		}
-//	}
-
-	//Generate comportemental perf report
+            emit sendLogInfo("End of processing for experiment " + QString::number(i+1) + " out of " + QString::number(localizerCount) + "\n");
+            deleteAndNullify1D(myContainer);
+        }
+    }
 
 	emit finished();
 }
@@ -71,48 +69,47 @@ void BidsSubjectWorker::ExtractElectrodeList()
 	emit finished();
 }
 
-InsermLibrary::eegContainer* BidsSubjectWorker::ExtractData(ExperimentFolder currentLoca, bool extractOriginalData)
+InsermLibrary::eegContainer* BidsSubjectWorker::ExtractData(InsermLibrary::IEegFileInfo* ifileInfo, bool extractOriginalData)
 {
 //    int filePriorityCount = static_cast<int>(m_filePriority.size());
 //    for (int i = 0; i < filePriorityCount; i++)
 //	{
-//        InsermLibrary::IEegFileInfo* ifileInfo = currentLoca.GetEegFileInfo(m_filePriority[i]);
-//        if(ifileInfo != nullptr)
-//        {
-//            if(ifileInfo->CheckForErrors() == 0)
-//            {
-//                InsermLibrary::eegContainer *myContainer = GetEegContainer(ifileInfo->GetFilesString(), extractOriginalData);
-//                myContainer->DeleteElectrodes(m_IndexToDelete);
-//                myContainer->GetElectrodes();
+        if(ifileInfo != nullptr)
+        {
+            if(ifileInfo->CheckForErrors() == 0)
+            {
+                InsermLibrary::eegContainer *myContainer = GetEegContainer(ifileInfo->GetFilesString(), extractOriginalData);
+                myContainer->DeleteElectrodes(m_IndexToDelete);
+                myContainer->GetElectrodes();
 
-//                switch(m_ElectrodeOperation)
-//                {
-//                    case 0: //mono
-//                    {
-//                        myContainer->MonoElectrodes();
-//                        emit sendLogInfo(QString::fromStdString("Single channel created !"));
-//                        break;
-//                    }
-//                    case 1: //bipo
-//                    {
-//                        myContainer->BipolarizeElectrodes();
-//                        emit sendLogInfo(QString::fromStdString("Bipole created !"));
-//                        break;
-//                    }
-//                    default:
-//                    {
-//                        emit sendLogInfo(QString::fromStdString("Error, operation unknow, aborting"));
-//                        return nullptr;
-//                    }
-//                }
+                switch(m_ElectrodeOperation)
+                {
+                    case 0: //mono
+                    {
+                        myContainer->MonoElectrodes();
+                        emit sendLogInfo(QString::fromStdString("Single channel created !"));
+                        break;
+                    }
+                    case 1: //bipo
+                    {
+                        myContainer->BipolarizeElectrodes();
+                        emit sendLogInfo(QString::fromStdString("Bipole created !"));
+                        break;
+                    }
+                    default:
+                    {
+                        emit sendLogInfo(QString::fromStdString("Error, operation unknow, aborting"));
+                        return nullptr;
+                    }
+                }
 
 
-//                return myContainer;
-//            }
-//        }
+                return myContainer;
+            }
+        }
 //	}
 
-//	//if we arrive at this point, no compatible file has been detected, aborting
-//	emit sendLogInfo(QString::fromStdString("No Compatible file format detected, aborting file extraction"));
+    //if we arrive at this point, no compatible file has been detected, aborting
+    emit sendLogInfo(QString::fromStdString("No Compatible file format detected, aborting file extraction"));
 	return nullptr;
 }
