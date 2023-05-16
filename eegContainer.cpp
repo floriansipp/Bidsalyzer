@@ -1,5 +1,6 @@
 #include "eegContainer.h"
 #include "QtCore/qdebug.h"
+#include <filesystem>
 
 InsermLibrary::eegContainer::eegContainer(EEGFormat::IFile* file, int downsampFrequency)
 {
@@ -101,10 +102,12 @@ void InsermLibrary::eegContainer::SaveFrequencyData(EEGFormat::FileType FileType
 
     //TODO : When eeg format does not need boost::filesystem anymore
     //replace functions with those from std::filesystem
+    //TODO bis : can remove CREATE_DIRECTORY and use std::filesystem , it works fine
     if(!EEGFormat::Utility::IsValidDirectory(rootFrequencyFolder.c_str()))
     {
         std::cout << "Creating freQ FOLDER" << rootFrequencyFolder << std::endl;
-		CREATE_DIRECTORY(rootFrequencyFolder.c_str());
+        //CREATE_DIRECTORY(rootFrequencyFolder.c_str());
+        std::filesystem::create_directories(rootFrequencyFolder);
     }
 
     //for bids issues
