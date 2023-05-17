@@ -47,7 +47,9 @@ namespace InsermLibrary
         void LocalizeMapsOnly(eegContainer *myeegContainer, int idCurrentLoca);
 
 	private:
-        int LoadProcessedData(eegContainer* myeegContainer, FrequencyFolder folder, SmoothingWindow smoothingWindow, int index, InsermLibrary::FileType fileType);
+        InsermLibrary::IEegFileInfo* GetEegFileInfo(eegContainer* myeegContainer, std::pair<std::string,std::string> kvp, SmoothingWindow smoothingWindow, int index, InsermLibrary::FileType fileType);
+        int LoadData(eegContainer* myeegContainer, std::pair<std::string,std::string> kvp, std::string frequency, SmoothingWindow smoothingWindow, int index);
+        int LoadProcessedData(eegContainer* myeegContainer, InsermLibrary::IEegFileInfo* requestedFile, int index);
         void GenerateMapsAndFigures(eegContainer *myeegContainer, std::string freqFolder, FrequencyBandAnalysisOpt a);
 		//==
         void CreateEventsFile(FrequencyBandAnalysisOpt analysisOpt, eegContainer *myeegContainer, TriggerContainer *triggerContainer, ProvFile *myprovFile);

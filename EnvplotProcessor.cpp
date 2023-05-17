@@ -9,7 +9,7 @@
 void InsermLibrary::EnvplotProcessor::Process(TriggerContainer* triggerContainer, eegContainer* myeegContainer, ProvFile* myprovFile, std::string freqFolder, picOption* picOption)
 {
 	std::string mapsFolder = GetEnv2PlotMapsFolder(freqFolder, myprovFile);
-	std::string mapPath = PrepareFolderAndPathsPlot(mapsFolder, myeegContainer->DownsamplingFactor());
+    std::string mapPath = PrepareFolderAndPathsPlot(mapsFolder, myeegContainer);
 	// Get biggest window possible, for now we use the assumption that every bloc has the same window
 	// TODO : deal with possible different windows
 	int StartInSam = (myprovFile->Blocs()[0].MainSubBloc().MainWindow().Start() * myeegContainer->DownsampledFrequency()) / 1000;
@@ -37,12 +37,21 @@ std::string InsermLibrary::EnvplotProcessor::GetEnv2PlotMapsFolder(std::string f
 	return mapsFolder.append("_plots").append(" - " + myProv[myProv.size() - 1]);
 }
 
-std::string InsermLibrary::EnvplotProcessor::PrepareFolderAndPathsPlot(std::string mapsFolder, int dsSampFreq)
+std::string InsermLibrary::EnvplotProcessor::PrepareFolderAndPathsPlot(std::string mapsFolder, eegContainer* myeegContainer)
 {
-	if (!QDir(&mapsFolder.c_str()[0]).exists())
-		QDir().mkdir(&mapsFolder.c_str()[0]);
+    if (!QDir(&mapsFolder.c_str()[0]).exists())
+        QDir().mkdir(&mapsFolder.c_str()[0]);
 
-	vec1<std::string> dd = split<std::string>(mapsFolder, "/");
+    vec1<std::string> pathSplit = split<std::string>(mapsFolder, "/");
+    qDebug() << mapsFolder.c_str();
+    vec1<std::string> frequencySuffixSplit =  split<std::string>(pathSplit[pathSplit.size() - 1], "_");
 
-	return std::string(mapsFolder + "/" + dd[dd.size() - 2] + "_ds" + std::to_string(dsSampFreq) + "_sm0_plot_");
+    vec1<std::string> patientNameSplit = split<std::string>(myeegContainer->RootFileName(), "_");
+    std::string sub = patientNameSplit[0];
+    std::string task = patientNameSplit[2];
+
+    std::string fileNameBase =  myeegContainer->RootOutputFileFolder() + sub + "_" + task;
+    std::string labelName = sub + "_" + task + "_acq-" + frequencySuffixSplit[0] + "ds" +   std::to_string(myeegContainer->DownsamplingFactor());
+
+    return std::string(mapsFolder + "/" + labelName + "sm0plot_");
 }

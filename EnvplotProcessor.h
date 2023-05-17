@@ -19,7 +19,7 @@ namespace InsermLibrary
 
     private :        
         std::string GetEnv2PlotMapsFolder(std::string freqFolder, ProvFile* myprovFile);
-        std::string PrepareFolderAndPathsPlot(std::string freqFolder, int dsSampFreq);
+        std::string PrepareFolderAndPathsPlot(std::string freqFolder, eegContainer* myeegContainer);
     };
 }
 
