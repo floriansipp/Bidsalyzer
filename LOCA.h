@@ -12,8 +12,6 @@
 #include "../../Framework/Framework/Measure.h"
 #include "Utility.h"
 #include "eegContainer.h"
-//#include "patientFolder.h"
-#include "ExperimentFolder.h"
 #include "ProvFile.h"
 #include "Stats.h"
 #include "mapsGenerator.h"
@@ -21,7 +19,7 @@
 #include "FrequencyBandAnalysisOpt.h"
 #include "optionsParameters.h"
 #include "TriggerContainer.h"
-#include "FrequencyBand.h"
+#include "Data/FrequencyBand.h"
 #include "AlgorithmCalculator.h"
 
 #include "../../Framework/Framework/Pearson.h"
@@ -32,6 +30,8 @@
 #include "TrialMatricesProcessor.h"
 #include "CorrelationMapsProcessor.h"
 #include "StatisticalFilesProcessor.h"
+
+#include "Data/Files/IEegFileInfo.h"
 
 namespace InsermLibrary
 {
@@ -65,7 +65,7 @@ namespace InsermLibrary
 		void incrementAdavnce(int divider);
 
 	private:
-        ExperimentFolder *m_currentLoca = nullptr; //Only contains a link to filesystem information about current localizer, do not delete in destructor
+        //ExperimentFolder *m_currentLoca = nullptr; //Only contains a link to filesystem information about current localizer, do not delete in destructor
         std::string m_currentLocaName = "";
         int m_idCurrentLoca = -1;
 		TriggerContainer *m_triggerContainer = nullptr;

@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "ITxtFile.h"
-#include "FrequencyBand.h"
+#include "Data/FrequencyBand.h"
 #include <QCoreApplication>
 
 namespace InsermLibrary

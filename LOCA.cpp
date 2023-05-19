@@ -1,5 +1,6 @@
 #include "LOCA.h"
 #include <filesystem>
+#include "Data/Files/BrainvisionFileInfo.h"
 
 InsermLibrary::LOCA::LOCA(std::vector<FrequencyBandAnalysisOpt>& analysisOpt, statOption* statOption, picOption* picOption, std::string ptsFilePath)
 {
@@ -152,7 +153,7 @@ void InsermLibrary::LOCA::Localize(eegContainer* myeegContainer, int idCurrentLo
 void InsermLibrary::LOCA::LocalizeMapsOnly(eegContainer* myeegContainer, int idCurrentLoca)
 {
 	m_idCurrentLoca = idCurrentLoca;
-	m_currentLoca = nullptr;
+    //m_currentLoca = nullptr;
 	int examCountToProcess = static_cast<int>(m_analysisOpt.size());
 
 	std::vector<EEGFormat::ITrigger> triggers = myeegContainer->Triggers();

@@ -29,6 +29,7 @@
 namespace InsermLibrary
 {
 	enum FileExt { NO_EXT = -1, TRC, EEG_ELAN, ENT_ELAN, POS_ELAN, POS_DS_ELAN, SM0_ELAN, SM250_ELAN, SM500_ELAN, SM1000_ELAN, SM2500_ELAN, SM5000_ELAN, EDF, BRAINVISION };
+    enum class SmoothingWindow { SM0, SM250, SM500, SM1000, SM2500, SM5000 };
 
 	/********************************************************************/
 	/*	vector<string> v = split<string>("Hello, there; World", ";,");	*/

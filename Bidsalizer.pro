@@ -94,7 +94,7 @@ equals(COMPUTER, "flo_mac_work"){
     INCLUDE_FFTW = "/opt/homebrew/Cellar/fftw/3.3.10_1/include"
     INCLUDE_EEGFORMAT = "/Users/florian/Documents/Arbeit/Repository/C++/EEGFormat/EEGFormat"
     INCLUDE_FRAMEWORK = "/Users/florian/Documents/Arbeit/Repository/C++/Framework/Framework"
-    INCLUDE_LOCALIZER = "/Users/florian/Documents/Arbeit/Repository/C++/Localizer/Localizer"
+    INCLUDE_LOCALIZER = "/Users/florian/Documents/Arbeit/Repository/C++/Bidsalyzer"
     LIB_BOOST = -L"/opt/homebrew/Cellar/boost/1.80.0/lib" -lboost_filesystem
     LIB_FFTW = -L"/opt/homebrew/Cellar/fftw/3.3.10_1/lib" -lfftw3f.3 -lfftw3f_threads.3
     LIB_EEGFORMAT = -L"/Users/florian/Documents/Arbeit/Repository/C++/EEGFormat/EEGFormat" -lEEGFormat
@@ -129,12 +129,19 @@ LIBS += $$LIB_MISC
 
 ####################################### PROJECT FILES
 RESOURCES += \
+    bidsalyzer.qrc \
     bidsalyzer.qrc
 
 FORMS += \
     UI/Bidsalyzer.ui \
     UI/ConnectCleaner.ui \
     UI/Options/PictureOptionsWindow.ui \
+    UI/Options/Protocols/BlocWindow.ui \
+    UI/Options/Protocols/EventWindow.ui \
+    UI/Options/Protocols/IconWindow.ui \
+    UI/Options/Protocols/ProtocolWindow.ui \
+    UI/Options/Protocols/ProtocolsWindow.ui \
+    UI/Options/Protocols/SubBlocWindow.ui \
     UI/Options/StatisticOptions.ui
 
 HEADERS += \
@@ -155,6 +162,7 @@ HEADERS += \
     DataContainer.h \
     EnvplotProcessor.h \
     Event.h \
+    FrequencyBandAnalysisOpt.h \
     HilbertEnveloppe.h \
     IAlgorithmStrategy.h \
     Icon.h \
@@ -170,6 +178,12 @@ HEADERS += \
     UI/ConnectCleaner.h \
     UI/DeselectableTreeView.h \
     UI/Options/PictureOptionsWindow.h \
+    UI/Options/Protocols/BlocWindow.h \
+    UI/Options/Protocols/EventWindow.h \
+    UI/Options/Protocols/IconWindow.h \
+    UI/Options/Protocols/ProtocolWindow.h \
+    UI/Options/Protocols/ProtocolsWindow.h \
+    UI/Options/Protocols/SubBlocWindow.h \
     UI/Options/StatisticOptions.h \
     Utility.h \
     Window.h \
@@ -177,7 +191,11 @@ HEADERS += \
     Worker/IWorker.h \
     barsPlotsGenerator.h \
     eegContainer.h \
-    mapsGenerator.h
+    eegContainerParameters.h \
+    json.hpp \
+    json_fwd.hpp \
+    mapsGenerator.h \
+    optionsParameters.h
 
 SOURCES += \
     AlgorithmCalculator.cpp \
@@ -211,6 +229,12 @@ SOURCES += \
     UI/ConnectCleaner.cpp \
     UI/DeselectableTreeView.cpp \
     UI/Options/PictureOptionsWindow.cpp \
+    UI/Options/Protocols/BlocWindow.cpp \
+    UI/Options/Protocols/EventWindow.cpp \
+    UI/Options/Protocols/IconWindow.cpp \
+    UI/Options/Protocols/ProtocolWindow.cpp \
+    UI/Options/Protocols/ProtocolsWindows.cpp \
+    UI/Options/Protocols/SubBlocWindow.cpp \
     UI/Options/StatisticOptions.cpp \
     Utility.cpp \
     Window.cpp \
