@@ -135,6 +135,8 @@ RESOURCES += \
 FORMS += \
     UI/Bidsalyzer.ui \
     UI/ConnectCleaner.ui \
+    UI/Options/Frequency/FrequenciesWindow.ui \
+    UI/Options/Frequency/FrequencyWindow.ui \
     UI/Options/PictureOptionsWindow.ui \
     UI/Options/Protocols/BlocWindow.ui \
     UI/Options/Protocols/EventWindow.ui \
@@ -177,6 +179,8 @@ HEADERS += \
     UI/Bidsalyzer.h \
     UI/ConnectCleaner.h \
     UI/DeselectableTreeView.h \
+    UI/Options/Frequency/FrequenciesWindow.h \
+    UI/Options/Frequency/FrequencyWindow.h \
     UI/Options/PictureOptionsWindow.h \
     UI/Options/Protocols/BlocWindow.h \
     UI/Options/Protocols/EventWindow.h \
@@ -228,6 +232,8 @@ SOURCES += \
     UI/Bidsalyzer.cpp \
     UI/ConnectCleaner.cpp \
     UI/DeselectableTreeView.cpp \
+    UI/Options/Frequency/FrequenciesWindow.cpp \
+    UI/Options/Frequency/FrequencyWindow.cpp \
     UI/Options/PictureOptionsWindow.cpp \
     UI/Options/Protocols/BlocWindow.cpp \
     UI/Options/Protocols/EventWindow.cpp \
