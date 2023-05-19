@@ -1,0 +1,108 @@
+{
+  "ID": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+  "Name": "LEC1_STATISTICS",
+  "Blocs": [
+    {
+      "IllustrationPath": "",
+      "ID": "db4d0f26-cdc3-4bde-996e-8ef0d7d4fe9c",
+      "Name": "SEMANTIC_WIL",
+      "Order": 0,
+      "Sort": "Main_SEMANTIC_WIL_CODE",
+      "SubBlocs": [
+        {
+          "ID": "be7ce115-6863-4af4-9ac5-7e2c68ac8165",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 2000
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "SEMANTIC_WIL",
+              "Codes": [
+                10
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "53ce5ded-2848-414b-a37f-365ead0b08ac",
+      "Name": "PHONETIC_WIL",
+      "Order": 1,
+      "Sort": "Main_PHONETIC_WIL_CODE",
+      "SubBlocs": [
+        {
+          "ID": "9f1748f4-3cfd-426a-aadb-d7c8a87bb797",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 2000
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "PHONETIC_WIL",
+              "Codes": [
+                20
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "f4f36731-cfcc-4d39-9381-5f08be533d0d",
+      "Name": "VISUAL_WIL",
+      "Order": 2,
+      "Sort": "Main_VISUAL_WIL_CODE",
+      "SubBlocs": [
+        {
+          "ID": "ae91f77e-1de7-400b-943a-e19af0d1476b",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 2000
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "VISUAL_WIL",
+              "Codes": [
+                30
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    }
+  ]
+}

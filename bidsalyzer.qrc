@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Bidsalyzer">
+        <file>Resources/Config/frequencyBand.txt</file>
+        <file>Resources/localizer.ico</file>
+        <file>Resources/localizer_mac.icns</file>
+    </qresource>
+</RCC>

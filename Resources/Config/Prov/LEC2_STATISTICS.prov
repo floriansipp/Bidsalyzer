@@ -1,0 +1,76 @@
+{
+  "Name": "LEC2_STATISTICS",
+  "Blocs": [
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/LEC2/LEC2_ATT.jpg",
+      "Name": "ATTENTION",
+      "Order": 0,
+      "Sort": "Main_ATTENTION_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -300,
+            "End": 1200
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "ATTENTION",
+              "Codes": [
+                10
+              ],
+              "Type": 0,
+              "ID": "8d209785-0a94-414d-b567-643e7cbcb20d"
+            }
+          ],
+          "Icons": [],
+          "Treatments": [],
+          "ID": "9ce7fbb8-931d-4023-ba32-c05078bf4d95"
+        }
+      ],
+      "ID": "48ed4ac4-3cb7-4ff0-adec-e96ebb3859b5"
+    },
+    {
+      "IllustrationPath": "./Resources/Config/Pictures/LEC2/LEC2_IGN.jpg",
+      "Name": "IGNORE",
+      "Order": 1,
+      "Sort": "Main_IGNORE_CODE",
+      "SubBlocs": [
+        {
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -300,
+            "End": 1200
+          },
+          "Baseline": {
+            "Start": -200,
+            "End": 0
+          },
+          "Events": [
+            {
+              "Name": "IGNORE",
+              "Codes": [
+                20
+              ],
+              "Type": 0,
+              "ID": "81542af6-caf8-45c7-9d6b-a960286c9fda"
+            }
+          ],
+          "Icons": [],
+          "Treatments": [],
+          "ID": "31a38d0d-5dbc-4c49-b1f3-1a147d87674d"
+        }
+      ],
+      "ID": "f9a5f9d9-eed6-4512-8165-eec89aefa616"
+    }
+  ],
+  "ID": "xxxxxxxxxxxxxxxxxxxxxxxxx"
+}

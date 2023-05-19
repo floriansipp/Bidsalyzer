@@ -1,0 +1,279 @@
+{
+  "ID": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+  "Name": "ARFA",
+  "Blocs": [
+    {
+      "IllustrationPath": "",
+      "ID": "2905efb3-3107-4e4d-abf8-f716db3dfe98",
+      "Name": "CLIGNE",
+      "Order": 0,
+      "Sort": "Main_CLIGNE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "165b4a00-2736-42fa-89d6-604992e1dfc5",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "CLIGNE",
+              "Codes": [
+                10
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "52adb20d-32ef-451d-af5f-334458cca320",
+      "Name": "SACCADE",
+      "Order": 1,
+      "Sort": "Main_SACCADE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "71c4674a-330a-4b79-ba38-896d8ab6c690",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "SACCADE",
+              "Codes": [
+                20
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "5e230cb6-a0d9-45e2-a217-a6a941f8b879",
+      "Name": "SALIVE",
+      "Order": 2,
+      "Sort": "Main_SALIVE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "5b49e3b8-5aac-4cb2-89b5-b72a3063ae71",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "SALIVE",
+              "Codes": [
+                30
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "b629b341-f715-4053-9ddf-80e19be23f2e",
+      "Name": "DENTS",
+      "Order": 3,
+      "Sort": "Main_DENTS_CODE",
+      "SubBlocs": [
+        {
+          "ID": "cfa9e43c-5186-4b6c-aef6-e7a1aa2305ef",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "DENTS",
+              "Codes": [
+                40
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "4d9229c6-9d52-4ce8-84ea-d372ce99471c",
+      "Name": "FRONCE",
+      "Order": 4,
+      "Sort": "Main_FRONCE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "bdb9cf26-a0ae-4431-bc0d-9199dc0ef833",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "FRONCE",
+              "Codes": [
+                50
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "28d96d7e-a1d5-48c3-b723-4b45b771be96",
+      "Name": "LANGUE",
+      "Order": 5,
+      "Sort": "Main_LANGUE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "10e366b7-d3d8-49e3-907a-c67bd0f51e8c",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "LANGUE",
+              "Codes": [
+                60
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "cab986eb-372d-4b6b-a431-7f41fc065d62",
+      "Name": "SOURIRE",
+      "Order": 6,
+      "Sort": "Main_SOURIRE_CODE",
+      "SubBlocs": [
+        {
+          "ID": "ecac5c60-00a2-4ede-b546-41cdcb86d2bf",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50,
+            "Lenght": 200
+          },
+          "Events": [
+            {
+              "Name": "SOURIRE",
+              "Codes": [
+                70
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    },
+    {
+      "IllustrationPath": "",
+      "ID": "293fa2ba-6c0a-4e3a-873f-97d753f00693",
+      "Name": "CALME",
+      "Order": 7,
+      "Sort": "Main_CALME_CODE",
+      "SubBlocs": [
+        {
+          "ID": "5ab45b47-8352-4c8a-80cb-5ce856908bec",
+          "Name": "Main",
+          "Order": 0,
+          "Type": 0,
+          "Window": {
+            "Start": -500,
+            "End": 3000
+          },
+          "Baseline": {
+            "Start": -250,
+            "End": -50
+          },
+          "Events": [
+            {
+              "Name": "CALME",
+              "Codes": [
+                80
+              ],
+              "Type": 0
+            }
+          ],
+          "Icons": [],
+          "Treatments": []
+        }
+      ]
+    }
+  ]
+}
