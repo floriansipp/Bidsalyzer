@@ -11,9 +11,6 @@ void InsermLibrary::TrialMatricesProcessor::Process(TriggerContainer* triggerCon
     std::string mapsFolder = GetTrialmatFolder(myprovFile, freqFolder, statOption);
     std::string mapPath = PrepareFolderAndPathsTrial(mapsFolder, myeegContainer);
 
-    qDebug() << mapsFolder.c_str();
-    qDebug() << mapPath.c_str();
-
     // Get biggest window possible, for now we use the assumption that every bloc has the same window
     // TODO : deal with possible different windows
     int StartInSam = (myprovFile->Blocs()[0].MainSubBloc().MainWindow().Start() * myeegContainer->DownsampledFrequency()) / 1000;

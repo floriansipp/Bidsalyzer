@@ -43,7 +43,6 @@ std::string InsermLibrary::EnvplotProcessor::PrepareFolderAndPathsPlot(std::stri
         QDir().mkdir(&mapsFolder.c_str()[0]);
 
     vec1<std::string> pathSplit = split<std::string>(mapsFolder, "/");
-    qDebug() << mapsFolder.c_str();
     vec1<std::string> frequencySuffixSplit =  split<std::string>(pathSplit[pathSplit.size() - 1], "_");
 
     vec1<std::string> patientNameSplit = split<std::string>(myeegContainer->RootFileName(), "_");

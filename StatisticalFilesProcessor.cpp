@@ -684,14 +684,6 @@ std::vector<std::string> InsermLibrary::StatisticalFilesProcessor::DefinePathFor
     std::string directory = eegContainer->RootOutputFileFolder();
     std::string baseName = patientName + "_task-" + suffix + "_acq-" + frequencyFolder + "ds" + std::to_string(eegContainer->DownsamplingFactor()) + smoothing + "_ieeg";
 
-//    std::string newPath = freqFolder;
-//    newPath.append(pathSplit[pathSplit.size() - 1]);
-//    std::string baseName = newPath  + "_ds" + std::to_string(eegContainer->DownsamplingFactor()) + "_" + smoothing;
-
-    qDebug() << QString::fromStdString(directory + frequencyFolder + "/" + baseName + ".eeg.ent");
-    qDebug() << QString::fromStdString(directory + frequencyFolder + "/" + baseName + ".eeg");
-    qDebug() << QString::fromStdString(directory + baseName + ".pos");
-
     filesPath.push_back(directory + frequencyFolder + "/" + baseName + ".eeg.ent");
     filesPath.push_back(directory + frequencyFolder + "/" + baseName + ".eeg");
     filesPath.push_back(directory + baseName + ".pos");
@@ -700,9 +692,6 @@ std::vector<std::string> InsermLibrary::StatisticalFilesProcessor::DefinePathFor
 
 void InsermLibrary::StatisticalFilesProcessor::WriteResultFile(EEGFormat::ElanFile* outputFile, std::vector<std::string> filesPath, std::vector<std::pair<int, int>> posSampleCodeToWrite)
 {
-    qDebug() << filesPath[0].c_str();
-    qDebug() << filesPath[1].c_str();
-    qDebug() << filesPath[2].c_str();
     //Save ent and eeg
     outputFile->SaveAs(filesPath[0], filesPath[1], "","");
     //then triggers in pos

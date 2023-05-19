@@ -87,18 +87,12 @@ void InsermLibrary::eegContainer::BipolarizeElectrodes()
 void InsermLibrary::eegContainer::SaveFrequencyData(EEGFormat::FileType FileType, const std::vector<int>& frequencyBand)
 {
     std::filesystem::path root(m_file->DefaultFilePath());
-    qDebug() << root.parent_path().parent_path().parent_path().parent_path().c_str();
     std::string rootFileFolder = root.parent_path().parent_path().parent_path().parent_path().string() + "/derivatives";
-    //std::string rootFileFolder = EEGFormat::Utility::GetDirectoryPath(m_file->DefaultFilePath());
-    qDebug() << rootFileFolder.c_str();
-	std::string patientName = EEGFormat::Utility::GetFileName(m_file->DefaultFilePath(), false);
+    std::string patientName = EEGFormat::Utility::GetFileName(m_file->DefaultFilePath(), false);
     vec1<std::string> patientNameSplit = split<std::string>(patientName, "_");
     patientName = patientNameSplit[0];
-    qDebug() << patientName.c_str();
     std::string frequencyFolder = "f" + std::to_string(frequencyBand[0]) + "f" + std::to_string(frequencyBand[frequencyBand.size() - 1]);
-    qDebug() << frequencyFolder.c_str();
     std::string rootFrequencyFolder = rootFileFolder + "/" + patientName + "/ieeg/" + frequencyFolder + "/";
-    qDebug() << rootFrequencyFolder.c_str();
 
     //TODO : When eeg format does not need boost::filesystem anymore
     //replace functions with those from std::filesystem
